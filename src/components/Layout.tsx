@@ -34,7 +34,7 @@ const Layout: React.FC<Props> = ({ children, title = 'さくら学院ポーカ�
       <AppBar position='static'>
         <Toolbar>
           <Typography variant='h6' style={{ flexGrow: 1 }}>さくら学院ポーカー</Typography>
-          <Button color="inherit">ヒント</Button>
+          <Button color="inherit">遊び方</Button>
         </Toolbar>
       </AppBar>
       <Grid container justify='center'>
