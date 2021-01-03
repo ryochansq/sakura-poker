@@ -59,7 +59,7 @@ const IndexPage = () => {
   React.useEffect(() => draw(5), [])  // created
 
   return (
-    <Layout>
+    <Layout isDialogOpen={false}>
       <Grid container spacing={4}>
         <Grid item xs={12}>
           <Typography variant='subtitle1' className={classes.text}>手放すカードを選んで下さい</Typography>
