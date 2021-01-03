@@ -1,6 +1,7 @@
 import React from 'react'
 import { Button, Card, Grid, Typography } from '@material-ui/core'
 import { makeStyles, createStyles } from '@material-ui/core/styles'
+import Router from 'next/router'
 
 import Layout from 'components/Layout'
 import { MemberCard, members, Member } from 'interfaces/index'
@@ -34,11 +35,16 @@ const IndexPage = () => {
   }
   const [deck, setDeck] = React.useState<Member[]>(defaultDeck)
   const [hand, setHand] = React.useState<MemberCard[]>([])
+  const [numOfExchange, setNumOfExchange] = React.useState(3)
+
+  const selectedCount = hand.reduce((acc, card) => card.isSelected ? acc + 1 : acc, 0)
+  const buttonText = selectedCount > 0 ? `${selectedCount}枚 手放す` : 'どれも手放さない'
+
   const classes = useStyles()
 
-  const draw = (num: number) => {
+  const draw = (currentHand: MemberCard[], num: number) => {
     let newDeck = [...deck]
-    let newHand = [...hand]
+    let newHand = [...currentHand]
     for (let i = 0; i < num; i++) {
       const member = newDeck.pop()
       if (member) newHand.push({ member, isSelected: false })
@@ -53,32 +59,42 @@ const IndexPage = () => {
     })
     setHand(newHand)
   }
-  const selectedCount = hand.reduce((acc, card) => card.isSelected ? acc + 1 : acc, 0)
-  const buttonText = selectedCount > 0 ? `${selectedCount}枚 手放す` : 'どれも手放さない'
+  const discard = () => {
+    if (selectedCount === 0) {
+      setNumOfExchange(0)
+      return
+    }
+    const newHand = hand.filter((card) => !card.isSelected)
+    setHand(newHand)
+    draw(newHand, 5 - newHand.length)
+    setNumOfExchange(numOfExchange - 1)
+  }
 
-  React.useEffect(() => draw(5), [])  // created
+  React.useEffect(() => draw([], 5), [])  // created
+  if (!numOfExchange) setTimeout(() => Router.push({
+    pathname: '/result',
+    query: { member: hand.map((card) => card.member), result: '1' },
+  }), 500)
 
   return (
     <Layout isDialogOpen={false}>
-      <Grid container spacing={4}>
-        <Grid item xs={12}>
-          <Typography variant='subtitle1' className={classes.text}>手放すカードを選んで下さい</Typography>
-        </Grid>
-        <Grid item container justify="center" spacing={1} className={classes.field}>
-          <Grid item container xs={1} alignItems='center'>手札</Grid>
-          {hand.map(card =>
-            <Grid key={card.member} item xs={2}>
-              <Card onClick={() => select(card.member)} className={card.isSelected ? classes.selected : ''}>
-                <img src={`members/${card.member}.jpeg`} className={classes.img} />
-              </Card>
-            </Grid>
-          )}
-        </Grid>
-        <Grid item container justify='center'>
-          <Button variant='contained' color={selectedCount > 0 ? 'primary' : 'default'}>{buttonText}</Button>
-        </Grid>
+      <Grid item xs={12}>
+        <Typography variant='subtitle1' className={classes.text}>手放すカードを選んで下さい　　あと {numOfExchange} 回</Typography>
       </Grid>
-    </Layout>
+      <Grid item container spacing={1} className={classes.field}>
+        <Grid item container xs={1} alignItems='center'>手札</Grid>
+        {hand.map(card =>
+          <Grid key={card.member} item xs={2}>
+            <Card onClick={() => select(card.member)} className={card.isSelected ? classes.selected : ''}>
+              <img src={`members/${card.member}.jpeg`} className={classes.img} />
+            </Card>
+          </Grid>
+        )}
+      </Grid>
+      <Grid item container justify='center'>
+        <Button onClick={discard} variant='contained' color={selectedCount > 0 ? 'primary' : 'default'} disabled={!numOfExchange}>{buttonText}</Button>
+      </Grid>
+    </Layout >
   )
 }
 export default IndexPage

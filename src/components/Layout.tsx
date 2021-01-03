@@ -42,7 +42,9 @@ const Layout: React.FC<Props> = ({ children, isDialogOpen = false }) => {
       <Grid container justify='center'>
         <Grid item xs={12} md={8} lg={6}>
           <Paper className={classes.paper}>
-            {children}
+            <Grid container spacing={3}>
+              {children}
+            </Grid>
             <Grid container spacing={1} className={classes.footer}>
               <Grid item container justify='flex-end'>
                 <Typography variant='caption'>
