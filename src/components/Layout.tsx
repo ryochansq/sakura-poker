@@ -34,7 +34,7 @@ const Layout: React.FC<Props> = ({ children, isDialogOpen = false }) => {
       }
     `}</style>
       <AppBar position='static'>
-        <Toolbar>
+        <Toolbar variant="dense">
           <Typography variant='h6' style={{ flexGrow: 1 }}>さくら学院ポーカー</Typography>
           <HowToPlayDialog defaultState={isDialogOpen} />
         </Toolbar>

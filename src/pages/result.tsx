@@ -43,7 +43,9 @@ const IndexPage = () => {
 
   return (
     <Layout isDialogOpen={false}>
-      <Grid item></Grid>
+      <Grid item xs={12}>
+        <Typography variant='subtitle1' className={classes.text}>結果</Typography>
+      </Grid>
       <Grid item container justify='center' spacing={1} className={classes.field}>
         {!!members && members.map(member =>
           <Grid key={member} item xs={2}>
@@ -55,20 +57,20 @@ const IndexPage = () => {
       </Grid>
       <Grid item container>
         <Grid item container justify='center'>
-          <Grid item xs={7} sm={4}>役</Grid>
-          <Grid item container xs={3} sm={1} justify='flex-end'>点数</Grid>
+          <Grid item xs={8} sm={4}>役</Grid>
+          <Grid item container xs={2} sm={1} justify='flex-end'>点数</Grid>
         </Grid>
         {combos.map(combo =>
           <Grid key={combo.name} item container justify='center'>
-            <Grid item xs={7} sm={4}>{combo.name}</Grid>
-            <Grid item container xs={3} sm={1} justify='flex-end'>{combo.score}</Grid>
+            <Grid item xs={8} sm={4}>{combo.name}</Grid>
+            <Grid item container xs={2} sm={1} justify='flex-end'>{combo.score}</Grid>
           </Grid>
         )}
       </Grid>
       <Grid item container>
         <Grid item container justify='center'>
-          <Grid item container xs={7} sm={4} alignItems='center'>あなたのスコア：</Grid>
-          <Grid item container xs={3} sm={1} justify='flex-end' alignItems='center' className={classes.score}>{score}</Grid>
+          <Grid item container xs={8} sm={4} alignItems='center'>あなたのスコア：</Grid>
+          <Grid item container xs={2} sm={1} justify='flex-end' alignItems='center' className={classes.score}>{score}</Grid>
         </Grid>
       </Grid>
       <Grid item container justify='center'>

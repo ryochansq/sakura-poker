@@ -1,4 +1,4 @@
-import { Member, Position, Club, Uniform, Other } from 'interfaces/index'
+import { Member, Position, Club, Home, Uniform, Other } from 'interfaces/index'
 
 export type MemberInfo = {
   name: Member,   // 名前
@@ -7,7 +7,7 @@ export type MemberInfo = {
   positions: Position[],
   clubs: Club[],
   birthMonth: number,
-  home: string,
+  home: Home,
   uniform: Uniform,
   others: Other[]
 }
@@ -20,8 +20,8 @@ export const memberInfo: MemberInfo[] = [
     positions: ['生徒会長'],
     clubs: ['Twinklestars 1期'],
     birthMonth: 4,
-    home: '茨城',
-    uniform: 'ネイビーの制服（2010〜2012）',
+    home: '茨城県',
+    uniform: 'ネイビーの制服2010',
     others: []
   },
   {
@@ -31,8 +31,8 @@ export const memberInfo: MemberInfo[] = [
     positions: [],
     clubs: ['SCOOPERS'],
     birthMonth: 12,
-    home: '福島',
-    uniform: 'ネイビーの制服（2010〜2012）',
+    home: '福島県',
+    uniform: 'ネイビーの制服2010',
     others: []
   },
   {
@@ -42,8 +42,8 @@ export const memberInfo: MemberInfo[] = [
     positions: [],
     clubs: ['SCOOPERS'],
     birthMonth: 6,
-    home: '埼玉',
-    uniform: 'ネイビーの制服（2010〜2012）',
+    home: '埼玉県',
+    uniform: 'ネイビーの制服2010',
     others: []
   },
   {
@@ -53,8 +53,8 @@ export const memberInfo: MemberInfo[] = [
     positions: ['生徒会長'],
     clubs: ['BABYMETAL'],
     birthMonth: 12,
-    home: '広島',
-    uniform: 'ネイビーの制服（2010〜2012）',
+    home: '広島県',
+    uniform: 'ネイビーの制服2010',
     others: ['2012年度生徒会']
   },
   {
@@ -64,8 +64,8 @@ export const memberInfo: MemberInfo[] = [
     positions: [],
     clubs: [],
     birthMonth: 8,
-    home: '広島',
-    uniform: 'ネイビーの制服（2010〜2012）',
+    home: '広島県',
+    uniform: 'ネイビーの制服2010',
     others: []
   },
   {
@@ -75,9 +75,9 @@ export const memberInfo: MemberInfo[] = [
     positions: ['生徒会長', '副会長'],
     clubs: ['Pastel Wind 1期', 'Twinklestars 1期', 'sleepiece 1期', '初代ミニパティ', '科学究明機構ロヂカ? : Ver.1.0'],
     birthMonth: 4,
-    home: '東京',
-    uniform: 'ベージュの制服（2013〜2015）',
-    others: []
+    home: '東京都',
+    uniform: 'ベージュの制服',
+    others: ['2012年度生徒会']
   },
   {
     name: '飯田 來麗',
@@ -86,9 +86,9 @@ export const memberInfo: MemberInfo[] = [
     positions: ['パフォーマンス委員長', '副々会長'],
     clubs: ['Twinklestars 1期', 'sleepiece 1期', '初代ミニパティ'],
     birthMonth: 4,
-    home: '東京',
-    uniform: 'ベージュの制服（2013〜2015）',
-    others: []
+    home: '東京都',
+    uniform: 'ベージュの制服',
+    others: ['2012年度生徒会']
   },
   {
     name: '杉﨑 寧々',
@@ -97,8 +97,8 @@ export const memberInfo: MemberInfo[] = [
     positions: ['トーク委員長'],
     clubs: ['Twinklestars 1期', 'Pastel Wind 1期', 'Pastel Wind 2期', 'sleepiece 1期', '初代ミニパティ'],
     birthMonth: 5,
-    home: '茨城',
-    uniform: 'ベージュの制服（2013〜2015）',
+    home: '茨城県',
+    uniform: 'ベージュの制服',
     others: []
   },
   {
@@ -108,8 +108,8 @@ export const memberInfo: MemberInfo[] = [
     positions: ['ムード委員長'],
     clubs: ['Twinklestars 1期', '科学究明機構ロヂカ? : Ver.1.0'],
     birthMonth: 12,
-    home: '新潟',
-    uniform: 'ベージュの制服（2013〜2015）',
+    home: '新潟県',
+    uniform: 'ベージュの制服',
     others: ['佐藤']
   },
   {
@@ -119,8 +119,8 @@ export const memberInfo: MemberInfo[] = [
     positions: ['生徒会長'],
     clubs: ['BABYMETAL', 'Twinklestars 1期', 'Twinklestars 2期', '二代目ミニパティ'],
     birthMonth: 7,
-    home: '愛知',
-    uniform: 'ベージュの制服（2013〜2015）',
+    home: '愛知県',
+    uniform: 'ベージュの制服',
     others: []
   },
   {
@@ -130,8 +130,8 @@ export const memberInfo: MemberInfo[] = [
     positions: ['プロデュース委員長'],
     clubs: ['BABYMETAL', 'Twinklestars 1期', 'Twinklestars 2期', '二代目ミニパティ'],
     birthMonth: 6,
-    home: '神奈川',
-    uniform: 'ベージュの制服（2013〜2015）',
+    home: '神奈川県',
+    uniform: 'ベージュの制服',
     others: []
   },
   {
@@ -141,8 +141,8 @@ export const memberInfo: MemberInfo[] = [
     positions: ['気合委員長'],
     clubs: ['Pastel Wind 1期', 'Pastel Wind 2期', 'プロレス同好会', '二代目ミニパティ'],
     birthMonth: 3,
-    home: '長野',
-    uniform: 'ベージュの制服（2013〜2015）',
+    home: '長野県',
+    uniform: 'ベージュの制服',
     others: []
   },
   {
@@ -152,8 +152,8 @@ export const memberInfo: MemberInfo[] = [
     positions: ['トーク委員長'],
     clubs: ['Pastel Wind 1期', 'Pastel Wind 2期', 'Twinklestars 2期', '購買部 1期'],
     birthMonth: 12,
-    home: '東京',
-    uniform: 'ベージュの制服（2013〜2015）',
+    home: '東京都',
+    uniform: 'ベージュの制服',
     others: []
   },
   {
@@ -163,8 +163,8 @@ export const memberInfo: MemberInfo[] = [
     positions: ['生徒会長'],
     clubs: ['プロレス同好会', '科学究明機構ロヂカ? : Ver.1.0', '科学究明機構ロヂカ? : Ver.1.2'],
     birthMonth: 11,
-    home: '神奈川',
-    uniform: 'ベージュの制服（2013〜2015）',
+    home: '神奈川県',
+    uniform: 'ベージュの制服',
     others: []
   },
   {
@@ -174,8 +174,8 @@ export const memberInfo: MemberInfo[] = [
     positions: ['教育委員長'],
     clubs: ['Pastel Wind 2期', 'sleepiece 2期'],
     birthMonth: 4,
-    home: '東京',
-    uniform: 'ベージュの制服（2013〜2015）',
+    home: '東京都',
+    uniform: 'ベージュの制服',
     others: []
   },
   {
@@ -185,8 +185,8 @@ export const memberInfo: MemberInfo[] = [
     positions: ['トーク委員長'],
     clubs: ['購買部 1期', '購買部 2期'],
     birthMonth: 9,
-    home: '新潟',
-    uniform: 'ベージュの制服（2013〜2015）',
+    home: '新潟県',
+    uniform: 'ベージュの制服',
     others: []
   },
   {
@@ -196,8 +196,8 @@ export const memberInfo: MemberInfo[] = [
     positions: ['生徒会長'],
     clubs: ['Twinklestars 2期', '科学究明機構ロヂカ? : Ver.1.2', '科学究明機構ロヂカ? : Ver.2.0'],
     birthMonth: 2,
-    home: '茨城',
-    uniform: 'グレーの制服（2016〜2018）',
+    home: '茨城県',
+    uniform: 'グレーの制服',
     others: ['2016年度生徒会']
   },
   {
@@ -207,8 +207,8 @@ export const memberInfo: MemberInfo[] = [
     positions: ['MC委員長'],
     clubs: ['sleepiece 2期', 'sleepiece 3期'],
     birthMonth: 5,
-    home: '東京',
-    uniform: 'グレーの制服（2016〜2018）',
+    home: '東京都',
+    uniform: 'グレーの制服',
     others: ['2016年度生徒会']
   },
   {
@@ -218,8 +218,8 @@ export const memberInfo: MemberInfo[] = [
     positions: ['副会長', '生徒会長'],
     clubs: ['Twinklestars 2期', '三代目ミニパティ'],
     birthMonth: 12,
-    home: '鹿児島',
-    uniform: 'グレーの制服（2016〜2018）',
+    home: '鹿児島県',
+    uniform: 'グレーの制服',
     others: ['2016年度生徒会', '2017年度生徒会']
   },
   {
@@ -229,8 +229,8 @@ export const memberInfo: MemberInfo[] = [
     positions: ['トーク委員長'],
     clubs: ['科学究明機構ロヂカ? : Ver.1.2', '科学究明機構ロヂカ? : Ver.2.0'],
     birthMonth: 4,
-    home: '愛知',
-    uniform: 'グレーの制服（2016〜2018）',
+    home: '愛知県',
+    uniform: 'グレーの制服',
     others: ['2017年度生徒会']
   },
   {
@@ -240,8 +240,8 @@ export const memberInfo: MemberInfo[] = [
     positions: ['顔笑れ!!委員長'],
     clubs: ['三代目ミニパティ', '科学究明機構ロヂカ? : Ver.2.0'],
     birthMonth: 3,
-    home: '神奈川',
-    uniform: 'グレーの制服（2016〜2018）',
+    home: '神奈川県',
+    uniform: 'グレーの制服',
     others: ['2017年度生徒会', 'KYG']
   },
   {
@@ -251,8 +251,8 @@ export const memberInfo: MemberInfo[] = [
     positions: ['生徒会長'],
     clubs: ['trico dolls'],
     birthMonth: 7,
-    home: '和歌山',
-    uniform: 'グレーの制服（2016〜2018）',
+    home: '和歌山県',
+    uniform: 'グレーの制服',
     others: ['2018年度生徒会']
   },
   {
@@ -262,8 +262,8 @@ export const memberInfo: MemberInfo[] = [
     positions: ['教育委員長', 'トーク委員長'],
     clubs: ['sleepiece 2期', 'sleepiece 3期'],
     birthMonth: 11,
-    home: '神奈川',
-    uniform: 'グレーの制服（2016〜2018）',
+    home: '神奈川県',
+    uniform: 'グレーの制服',
     others: ['2017年度生徒会', '2018年度生徒会', 'KYG']
   },
   {
@@ -273,8 +273,8 @@ export const memberInfo: MemberInfo[] = [
     positions: ['はみだせ!委員長'],
     clubs: ['三代目ミニパティ'],
     birthMonth: 12,
-    home: '神奈川',
-    uniform: 'グレーの制服（2016〜2018）',
+    home: '神奈川県',
+    uniform: 'グレーの制服',
     others: ['2018年度生徒会']
   },
   {
@@ -284,8 +284,8 @@ export const memberInfo: MemberInfo[] = [
     positions: ['パフォーマンス委員長', '生徒会長'],
     clubs: ['sleepiece 3期'],
     birthMonth: 8,
-    home: '千葉',
-    uniform: 'ネイビーの制服（2019〜2020）',
+    home: '千葉県',
+    uniform: 'ネイビーの制服2019',
     others: ['2018年度生徒会', 'KYG']
   },
   {
@@ -295,8 +295,8 @@ export const memberInfo: MemberInfo[] = [
     positions: ['教育委員長', '顔笑れ!!委員長'],
     clubs: ['購買部 2期', '購買部 3期'],
     birthMonth: 6,
-    home: '大阪',
-    uniform: 'ネイビーの制服（2019〜2020）',
+    home: '大阪府',
+    uniform: 'ネイビーの制服2019',
     others: ['2018年度生徒会']
   },
   {
@@ -306,8 +306,8 @@ export const memberInfo: MemberInfo[] = [
     positions: ['はみだせ!委員長'],
     clubs: ['購買部 3期'],
     birthMonth: 9,
-    home: '千葉',
-    uniform: 'ネイビーの制服（2019〜2020）',
+    home: '千葉県',
+    uniform: 'ネイビーの制服2019',
     others: []
   },
   {
@@ -317,8 +317,8 @@ export const memberInfo: MemberInfo[] = [
     positions: ['トーク委員長'],
     clubs: ['trico dolls'],
     birthMonth: 12,
-    home: '東京',
-    uniform: 'ネイビーの制服（2019〜2020）',
+    home: '東京都',
+    uniform: 'ネイビーの制服2019',
     others: ['森']
   },
   {
@@ -328,8 +328,8 @@ export const memberInfo: MemberInfo[] = [
     positions: ['トーク委員長'],
     clubs: [],
     birthMonth: 6,
-    home: '熊本',
-    uniform: 'ネイビーの制服（2019〜2020）',
+    home: '熊本県',
+    uniform: 'ネイビーの制服2019',
     others: []
   },
   {
@@ -339,8 +339,8 @@ export const memberInfo: MemberInfo[] = [
     positions: ['生徒会長'],
     clubs: [],
     birthMonth: 1,
-    home: '長崎',
-    uniform: 'ネイビーの制服（2019〜2020）',
+    home: '長崎県',
+    uniform: 'ネイビーの制服2019',
     others: []
   },
   {
@@ -350,8 +350,8 @@ export const memberInfo: MemberInfo[] = [
     positions: ['気合委員長'],
     clubs: [],
     birthMonth: 6,
-    home: '大分',
-    uniform: 'ネイビーの制服（2019〜2020）',
+    home: '大分県',
+    uniform: 'ネイビーの制服2019',
     others: []
   },
   {
@@ -361,8 +361,8 @@ export const memberInfo: MemberInfo[] = [
     positions: ['副会長'],
     clubs: ['購買部 4期'],
     birthMonth: 12,
-    home: '大阪',
-    uniform: 'ネイビーの制服（2019〜2020）',
+    home: '大阪府',
+    uniform: 'ネイビーの制服2019',
     others: []
   },
   {
@@ -372,8 +372,8 @@ export const memberInfo: MemberInfo[] = [
     positions: ['教育委員長'],
     clubs: [],
     birthMonth: 12,
-    home: '佐賀',
-    uniform: 'ネイビーの制服（2019〜2020）',
+    home: '佐賀県',
+    uniform: 'ネイビーの制服2019',
     others: ['佐藤']
   },
   {
@@ -383,8 +383,8 @@ export const memberInfo: MemberInfo[] = [
     positions: ['パフォーマンス委員長'],
     clubs: [],
     birthMonth: 8,
-    home: '広島',
-    uniform: 'ネイビーの制服（2019〜2020）',
+    home: '広島県',
+    uniform: 'ネイビーの制服2019',
     others: []
   },
   {
@@ -394,8 +394,8 @@ export const memberInfo: MemberInfo[] = [
     positions: ['PR委員長'],
     clubs: ['trico dolls'],
     birthMonth: 11,
-    home: '愛知',
-    uniform: 'ネイビーの制服（2019〜2020）',
+    home: '愛知県',
+    uniform: 'ネイビーの制服2019',
     others: []
   },
   {
@@ -405,8 +405,8 @@ export const memberInfo: MemberInfo[] = [
     positions: ['がむしゃら!委員長'],
     clubs: [],
     birthMonth: 2,
-    home: '東京',
-    uniform: 'ネイビーの制服（2019〜2020）',
+    home: '東京都',
+    uniform: 'ネイビーの制服2019',
     others: []
   },
   {
@@ -416,7 +416,7 @@ export const memberInfo: MemberInfo[] = [
     positions: [],
     clubs: [],
     birthMonth: 2,
-    home: '東京',
+    home: '東京都',
     uniform: '',
     others: ['森', '森ハヤシ']
   },
