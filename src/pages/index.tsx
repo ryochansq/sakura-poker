@@ -78,10 +78,10 @@ const IndexPage = () => {
     query: { member: hand.map((card) => card.member), result: '1' },
   }), 500)
 
-  const isExp = router.query.exp === '1'
+  const isFirst = router.query.first === '1'
 
   return (
-    <Layout isDialogOpen={!isExp}>
+    <Layout isDialogOpen={isFirst}>
       <Grid item xs={12}>
         <Typography variant='subtitle1' className={classes.text}>手放すカードを選んで下さい　　あと {numOfExchange} 回</Typography>
       </Grid>

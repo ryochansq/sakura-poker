@@ -29,6 +29,7 @@ const useStyles = makeStyles(() => createStyles({
     cursor: 'pointer',
     color: '#00d',
     textDecoration: 'underline',
+    userSelect: 'none',
   },
   button: {
     textTransform: 'none',
@@ -110,7 +111,7 @@ const IndexPage = () => {
       </Grid>
       <Grid item container direction='row' justify='center' spacing={2}>
         <Grid item>
-          <Button onClick={() => router.push(`/${isResult ? '?exp=1' : ''}`)} variant='contained' color='primary' className={classes.button}>{isResult ? 'もういちど遊ぶ' : '自分も遊んでみる！'}</Button>
+          <Button onClick={() => router.push(`/${isResult ? '' : '?first=1'}`)} variant='contained' color='primary' className={classes.button}>{isResult ? 'もういちど遊ぶ' : '自分も遊んでみる！'}</Button>
         </Grid>
         <Grid item>
           {isResult && <Button onClick={tweet} variant='contained' color='primary' className={classes.tweet} startIcon={<Twitter />} disabled>結果をTweet</Button>}
