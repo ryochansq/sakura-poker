@@ -1,7 +1,7 @@
 import React from 'react'
 import { Button, Card, Grid, Typography } from '@material-ui/core'
 import { makeStyles, createStyles } from '@material-ui/core/styles'
-import Router from 'next/router'
+import { useRouter } from 'next/router'
 
 import Layout from 'components/Layout'
 import { MemberCard, members, Member } from 'interfaces/index'
@@ -16,8 +16,8 @@ const useStyles = makeStyles(() => createStyles({
     padding: 0,
   },
   selected: {
-    border: 'solid 2px red',
-    margin: -2,
+    border: 'solid 3px red',
+    margin: -3,
   },
   img: {
     width: '100%',
@@ -39,7 +39,7 @@ const IndexPage = () => {
   const [numOfExchange, setNumOfExchange] = React.useState(3)
 
   const selectedCount = hand.reduce((acc, card) => card.isSelected ? acc + 1 : acc, 0)
-  const buttonText = selectedCount > 0 ? `${selectedCount}枚 手放す` : 'どれも手放さない'
+  const buttonText = selectedCount > 0 ? `${selectedCount}枚 手放す` : '誰も手放さない'
 
   const classes = useStyles()
 
@@ -71,14 +71,17 @@ const IndexPage = () => {
     setNumOfExchange(numOfExchange - 1)
   }
 
+  const router = useRouter()
   React.useEffect(() => draw([], 5), [])  // created
-  if (!numOfExchange) setTimeout(() => Router.push({
+  if (!numOfExchange) setTimeout(() => router.push({
     pathname: '/result',
     query: { member: hand.map((card) => card.member), result: '1' },
   }), 500)
 
+  const isExp = router.query.exp === '1'
+
   return (
-    <Layout isDialogOpen={false}>
+    <Layout isDialogOpen={!isExp}>
       <Grid item xs={12}>
         <Typography variant='subtitle1' className={classes.text}>手放すカードを選んで下さい　　あと {numOfExchange} 回</Typography>
       </Grid>

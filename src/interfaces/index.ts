@@ -11,13 +11,13 @@ export type Position = '生徒会長' | '副会長' | '副々会長' | 'トー�
 
 export type Club = Art | Kobai | Kagaku | Cooking | Kitaku | Baton | Prowrestling | Tennis | Jyuon | Shimbun
 type Art = 'trico dolls'
-type Kobai = '購買部 1期' | '購買部 2期' | '購買部 3期' | '購買部 4期'
+type Kobai = '購買部（1期）' | '購買部（2期）' | '購買部（3期）' | '購買部（4期）'
 type Kagaku = '科学究明機構ロヂカ? : Ver.1.0' | '科学究明機構ロヂカ? : Ver.1.2' | '科学究明機構ロヂカ? : Ver.2.0'
 type Cooking = '初代ミニパティ' | '二代目ミニパティ' | '三代目ミニパティ'
-type Kitaku = 'sleepiece 1期' | 'sleepiece 2期' | 'sleepiece 3期'
-type Baton = 'Twinklestars 1期' | 'Twinklestars 2期'
+type Kitaku = 'sleepiece（1期）' | 'sleepiece（2期）' | 'sleepiece（3期）'
+type Baton = 'Twinklestars（1期）' | 'Twinklestars（2期）'
 type Prowrestling = 'プロレス同好会'
-type Tennis = 'Pastel Wind 1期' | 'Pastel Wind 2期'
+type Tennis = 'Pastel Wind（1期）' | 'Pastel Wind（2期）'
 type Jyuon = 'BABYMETAL'
 type Shimbun = 'SCOOPERS'
 

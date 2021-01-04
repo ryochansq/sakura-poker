@@ -1,11 +1,12 @@
 import React from 'react'
-import { Button, Card, Grid, Typography } from '@material-ui/core'
+import { Button, Card, Grid, Tooltip, Typography, Zoom } from '@material-ui/core'
 import { Twitter } from '@material-ui/icons'
 import { makeStyles, createStyles } from '@material-ui/core/styles'
 import { useRouter } from 'next/router'
 
 import Layout from 'components/Layout'
 import { Member } from 'interfaces/index'
+import { MemberInfo } from 'interfaces/memberInfo'
 import { getCombos } from 'utils/score'
 
 const useStyles = makeStyles(() => createStyles({
@@ -16,29 +17,35 @@ const useStyles = makeStyles(() => createStyles({
   field: {
     backgroundColor: '#ffe5ff',
   },
-  selected: {
-    border: 'solid 2px red',
-    margin: -2,
+  focused: {
+    border: 'solid 3px #00f',
+    margin: -3,
   },
   img: {
     width: '100%',
     height: 'auto',
   },
+  comboName: {
+    cursor: 'pointer',
+    color: '#00d',
+    textDecoration: 'underline',
+  },
   button: {
     textTransform: 'none',
+  },
+  score: {
+    fontSize: 26,
+    fontWeight: 600,
   },
   tweet: {
     textTransform: 'none',
     backgroundColor: '#1DA1F2',
     fontWeight: 600,
   },
-  score: {
-    fontSize: 24,
-    fontWeight: 600,
-  }
 }))
 
 const IndexPage = () => {
+  const [focusedMembers, setFocusedMembers] = React.useState<Member[]>([])
   const classes = useStyles()
   const router = useRouter()
   const members = router.query.member as Member[]
@@ -55,6 +62,11 @@ const IndexPage = () => {
     window.open(intent)
   }
 
+  const onTipOpen = (comboMembersInfo: MemberInfo[]) => {
+    const comboMembers = comboMembersInfo.map(memberInfo => memberInfo.name)
+    setFocusedMembers(comboMembers)
+  }
+
   return (
     <Layout isDialogOpen={false}>
       <Grid item xs={12}>
@@ -63,7 +75,7 @@ const IndexPage = () => {
       <Grid item container justify='center' spacing={1} className={classes.field}>
         {!!members && members.map(member =>
           <Grid key={member} item xs={2}>
-            <Card>
+            <Card className={focusedMembers.some(focused => focused === member) ? classes.focused : ''}>
               <img src={`members/${member}.jpg`} className={classes.img} />
             </Card>
           </Grid>
@@ -76,7 +88,16 @@ const IndexPage = () => {
         </Grid>
         {combos.map(combo =>
           <Grid key={combo.name} item container justify='center'>
-            <Grid item xs={8} sm={4}>{combo.name}</Grid>
+            <Tooltip
+              arrow
+              onOpen={() => onTipOpen(combo.members)}
+              onClose={() => setFocusedMembers([])}
+              placement='top-start'
+              title={combo.description}
+              TransitionComponent={Zoom}
+            >
+              <Grid item xs={8} sm={4} className={classes.comboName}>{combo.name}</Grid>
+            </Tooltip>
             <Grid item container xs={2} sm={1} justify='flex-end'>{combo.score}</Grid>
           </Grid>
         )}
@@ -89,10 +110,10 @@ const IndexPage = () => {
       </Grid>
       <Grid item container direction='row' justify='center' spacing={2}>
         <Grid item>
-          <Button onClick={() => router.push('/')} variant='contained' color='primary' className={classes.button}>{isResult ? 'もういちど遊ぶ' : '自分も遊んでみる'}</Button>
+          <Button onClick={() => router.push(`/${isResult ? '?exp=1' : ''}`)} variant='contained' color='primary' className={classes.button}>{isResult ? 'もういちど遊ぶ' : '自分も遊んでみる！'}</Button>
         </Grid>
         <Grid item>
-          {isResult && <Button onClick={tweet} variant='contained' color='primary' className={classes.tweet} startIcon={<Twitter />}>結果をTweet</Button>}
+          {isResult && <Button onClick={tweet} variant='contained' color='primary' className={classes.tweet} startIcon={<Twitter />} disabled>結果をTweet</Button>}
         </Grid>
       </Grid>
     </Layout>

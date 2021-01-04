@@ -66,14 +66,14 @@ const comboTransfer = (members: MemberInfo[]): Combo[] => {
   if (members.every(member => member[keyword] === '初期メンバー'))
     return [{
       name: '初期メンバー ﾌﾗｯｼｭ',
-      description: '初期メンバーを5人揃える',
+      description: '初期メンバーを5人そろえる',
       members,
       score: 50,
     }]
   if (members.every(member => member[keyword] === 2015))
     return [{
       name: '2015年度転入生 ﾌﾗｯｼｭ',
-      description: '2015年度転入生を5人揃える',
+      description: '2015年度転入生を5人そろえる',
       members,
       score: 50,
     }]
@@ -91,7 +91,7 @@ const comboTransfer = (members: MemberInfo[]): Combo[] => {
     if (key >= 2010 && map.get(key) === allMap.get(key))
       combos.push({
         name: `${key}年度転入生`,
-        description: `${key}年度転入生を全員揃える`,
+        description: `${key}年度転入生を全員そろえる`,
         members: members.filter(member => member[keyword] === key),
         score: map.get(key)! * 10 + 5
       })
@@ -115,14 +115,14 @@ const comboGraduate = (members: MemberInfo[]): Combo[] => {
       if (2011 <= key && key <= 2019)
         combos.push({
           name: `${key}年度卒業生`,
-          description: `${key}年度卒業生を全員揃える`,
+          description: `${key}年度卒業生を全員そろえる`,
           members: members.filter(member => member[keyword] === key),
           score: map.get(key)! * 10 + 5
         })
       else if (typeof key === 'number' && 2020 <= key && key <= 2021)
         combos.push({
           name: `2020年度 中等部${2023 - key}年`,
-          description: `2020年度の中等部${2023 - key}年を全員揃える`,
+          description: `2020年度の中等部${2023 - key}年を全員そろえる`,
           members: members.filter(member => member[keyword] === key),
           score: map.get(key)! * 10 + 5
         })
@@ -140,14 +140,14 @@ const comboPositions = (members: MemberInfo[]): Combo[] => {
     if (allMap.get(key) === 1)
       combos.push({
         name: `${key}`,
-        description: `${key}を全員揃える`,
+        description: `${key}を全員そろえる`,
         members: members.filter(member => member[keyword].some(position => position === key)),
         score: 5
       })
     else if (num >= 2)
       combos.push({
         name: `${key} ${getNumWord(num)}`,
-        description: `${key}を${num}人揃える`,
+        description: `${key}を${num}人そろえる`,
         members: members.filter(member => member[keyword].some(position => position === key)),
         score: num * 10
       })
@@ -156,6 +156,13 @@ const comboPositions = (members: MemberInfo[]): Combo[] => {
 }
 const comboClubs = (members: MemberInfo[]): Combo[] => {
   const keyword = 'clubs'
+  if (members.every(member => member[keyword].some(club => club === 'Twinklestars（1期）')))
+    return [{
+      name: 'Twinklestars（1期） ﾌﾗｯｼｭ',
+      description: 'Twinklestars（1期）を5人そろえる',
+      members,
+      score: 50,
+    }]
   const allMap = getMap(memberInfo, keyword)
   const map = getMap(members, keyword)
   const combos: Combo[] = []
@@ -163,9 +170,9 @@ const comboClubs = (members: MemberInfo[]): Combo[] => {
     if (map.get(key) === allMap.get(key))
       combos.push({
         name: `${key}`,
-        description: `${key}を全員揃える`,
+        description: `${key}を全員そろえる`,
         members: members.filter(member => member[keyword].some(club => club === key)),
-        score: map.get(key)! * 10 + 5
+        score: map.get(key)! === 1 ? 5 : map.get(key)! * 10 + 5
       })
   }
   return combos
@@ -186,7 +193,7 @@ const comboBirthMonth = (members: MemberInfo[]): Combo[] => {
     if (num >= 2) {
       combos.push({
         name: `${key}月生まれ ${getNumWord(num)}`,
-        description: `${key}月生まれを${num}人揃える`,
+        description: `${key}月生まれを${num}人そろえる`,
         members: members.filter(member => member[keyword] === key),
         score: num * 10
       })
@@ -203,7 +210,7 @@ const comboHome = (members: MemberInfo[]): Combo[] => {
     if (num >= 2) {
       combos.push({
         name: `${key}出身 ${getNumWord(num)}`,
-        description: `${key}出身を${num}人揃える`,
+        description: `${key}出身を${num}人そろえる`,
         members: members.filter(member => member[keyword] === key),
         score: num * 10
       })
@@ -219,7 +226,7 @@ const comboUniform = (members: MemberInfo[]): Combo[] => {
     if (map.get(key) === 5)
       combos.push({
         name: `${key} ﾌﾗｯｼｭ`,
-        description: `${key}を5人揃える`,
+        description: `${key}を5人そろえる`,
         members,
         score: 50
       })
@@ -243,14 +250,14 @@ const comboOthers = (members: MemberInfo[]): Combo[] => {
       else if (key === '佐藤' || key === '森')
         combos.push({
           name: `${key} ﾍﾟｱ`,
-          description: `${key}を2人揃える`,
+          description: `${key}を2人そろえる`,
           members: members.filter(member => member[keyword].some(other => other === key)),
           score: 20
         })
       else
         combos.push({
           name: `${key}`,
-          description: `${key}を全員揃える`,
+          description: `${key}を全員そろえる`,
           members: members.filter(member => member[keyword].some(other => other === key)),
           score: map.get(key)! * 10 + 5
         })
