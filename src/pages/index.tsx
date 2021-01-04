@@ -87,7 +87,7 @@ const IndexPage = () => {
         {hand.map(card =>
           <Grid key={card.member} item xs={2}>
             <Card onClick={() => select(card.member)} className={card.isSelected ? classes.selected : ''}>
-              <img src={`members/${card.member}.jpeg`} className={classes.img} />
+              <img src={`members/${card.member}.jpg`} className={classes.img} />
             </Card>
           </Grid>
         )}

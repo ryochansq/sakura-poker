@@ -1,5 +1,6 @@
 import React from 'react'
 import { Button, Card, Grid, Typography } from '@material-ui/core'
+import { Twitter } from '@material-ui/icons'
 import { makeStyles, createStyles } from '@material-ui/core/styles'
 import { useRouter } from 'next/router'
 
@@ -26,6 +27,11 @@ const useStyles = makeStyles(() => createStyles({
   button: {
     textTransform: 'none',
   },
+  tweet: {
+    textTransform: 'none',
+    backgroundColor: '#1DA1F2',
+    fontWeight: 600,
+  },
   score: {
     fontSize: 24,
     fontWeight: 600,
@@ -39,7 +45,15 @@ const IndexPage = () => {
   const isResult = router.query.result === '1'
 
   const combos = !!members ? getCombos(members) : []
-  const score = !!members ? combos.reduce((acc, combo) => acc + combo.score, 0) : '計算中'
+  const score = !!members ? combos.reduce((acc, combo) => acc + combo.score, 0) : '???'
+
+  const tweet = () => {
+    const text = `さくら学院ポーカーで ${score}点 を取りました！\n#さくら学院 #さくら学院ポーカー\n\nhttps://sakura-poker.ryochansq.vercel.app/result`
+    const url = members.reduce((acc, member, index) => acc + `${index === 0 ? '?' : '&'}member=${encodeURIComponent(member)}`, '')
+    const encodedText = encodeURIComponent(text + url)
+    const intent = `https://twitter.com/intent/tweet?text=${encodedText}`
+    window.open(intent)
+  }
 
   return (
     <Layout isDialogOpen={false}>
@@ -50,7 +64,7 @@ const IndexPage = () => {
         {!!members && members.map(member =>
           <Grid key={member} item xs={2}>
             <Card>
-              <img src={`members/${member}.jpeg`} className={classes.img} />
+              <img src={`members/${member}.jpg`} className={classes.img} />
             </Card>
           </Grid>
         )}
@@ -69,20 +83,17 @@ const IndexPage = () => {
       </Grid>
       <Grid item container>
         <Grid item container justify='center'>
-          <Grid item container xs={8} sm={4} alignItems='center'>あなたのスコア：</Grid>
+          <Grid item container xs={8} sm={4} alignItems='center'>今回のスコア：</Grid>
           <Grid item container xs={2} sm={1} justify='flex-end' alignItems='center' className={classes.score}>{score}</Grid>
         </Grid>
       </Grid>
-      <Grid item container justify='center'>
-        {
-          isResult ?
-            <Button variant='contained' color='primary' className={classes.button} disabled>結果をTwitterで共有する</Button>
-            :
-            ''
-        }
-      </Grid>
-      <Grid item container justify='center'>
-        <Button onClick={() => router.push('/')} variant='contained' color='primary' className={classes.button}>もういちど遊ぶ</Button>
+      <Grid item container direction='row' justify='center' spacing={2}>
+        <Grid item>
+          <Button onClick={() => router.push('/')} variant='contained' color='primary' className={classes.button}>{isResult ? 'もういちど遊ぶ' : '自分も遊んでみる'}</Button>
+        </Grid>
+        <Grid item>
+          {isResult && <Button onClick={tweet} variant='contained' color='primary' className={classes.tweet} startIcon={<Twitter />}>結果をTweet</Button>}
+        </Grid>
       </Grid>
     </Layout>
   )
