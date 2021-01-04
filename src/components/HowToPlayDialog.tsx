@@ -16,7 +16,7 @@ type Props = {
 }
 
 const HowToPlayDialog: React.FC<Props> = ({ defaultState = false }) => {
-  const classes = useStyles()
+  // const classes = useStyles()
   const [isOpen, setIsOpen] = React.useState(defaultState)
 
   const handleClose = () => setIsOpen(false)

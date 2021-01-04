@@ -411,8 +411,8 @@ export const memberInfo: MemberInfo[] = [
   },
   {
     name: '森 ハヤシ',
-    transfer: 1000,
-    graduate: 3000,
+    transfer: -1,
+    graduate: -1,
     positions: [],
     clubs: [],
     birthMonth: 2,

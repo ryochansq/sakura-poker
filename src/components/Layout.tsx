@@ -7,7 +7,7 @@ import HowToPlayDialog from 'components/HowToPlayDialog'
 
 const useStyles = makeStyles({
   paper: {
-    padding: '16px 8px'
+    padding: 16,
   },
   footer: {
     marginTop: 16,

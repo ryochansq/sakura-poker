@@ -13,6 +13,7 @@ const useStyles = makeStyles(() => createStyles({
   },
   field: {
     backgroundColor: '#ffe5ff',
+    padding: 0,
   },
   selected: {
     border: 'solid 2px red',
