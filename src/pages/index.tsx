@@ -1,5 +1,5 @@
 import React from 'react'
-import { Button, Card, Grid, Typography } from '@material-ui/core'
+import { Button, Card, CardMedia, Grid, Typography } from '@material-ui/core'
 import { makeStyles, createStyles } from '@material-ui/core/styles'
 import { useRouter } from 'next/router'
 
@@ -19,9 +19,9 @@ const useStyles = makeStyles(() => createStyles({
     border: 'solid 3px red',
     margin: -3,
   },
-  img: {
-    width: '100%',
-    height: 'auto',
+  media: {
+    height: 0,
+    paddingTop: '155%',
   },
 }))
 
@@ -90,7 +90,7 @@ const IndexPage = () => {
         {hand.map(card =>
           <Grid key={card.member} item xs={2}>
             <Card onClick={() => select(card.member)} className={card.isSelected ? classes.selected : ''}>
-              <img src={`members/${card.member}.jpg`} className={classes.img} />
+              <CardMedia className={classes.media} image={`members/${card.member}.jpg`} title={card.member} />
             </Card>
           </Grid>
         )}

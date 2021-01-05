@@ -1,7 +1,7 @@
 import { Member } from 'interfaces/index'
 import { memberInfo, MemberInfo } from 'interfaces/memberInfo'
 
-type Combo = {
+export type Combo = {
   name: string,
   description: string,
   members: MemberInfo[],
@@ -110,6 +110,13 @@ const comboGraduate = (members: MemberInfo[]): Combo[] => {
   const allMap = getMap(memberInfo, keyword)
   const map = getMap(members, keyword)
   const combos: Combo[] = []
+  if (members.every(member => member[keyword] >= 2020))
+    combos.push({
+      name: '2020年度現役メンバー ﾌﾗｯｼｭ',
+      description: '2020年度現役メンバーを5人そろえる',
+      members,
+      score: 50,
+    })
   for (const key of map.keys()) {
     if (map.get(key) === allMap.get(key)) {
       if (2011 <= key && key <= 2019)

@@ -1,13 +1,12 @@
 import React from 'react'
-import { Button, Card, Grid, Tooltip, Typography, Zoom } from '@material-ui/core'
+import { Button, Card, CardMedia, Grid, Tooltip, Typography, Zoom } from '@material-ui/core'
 import { Twitter } from '@material-ui/icons'
 import { makeStyles, createStyles } from '@material-ui/core/styles'
 import { useRouter } from 'next/router'
 
 import Layout from 'components/Layout'
 import { Member } from 'interfaces/index'
-import { MemberInfo } from 'interfaces/memberInfo'
-import { getCombos } from 'utils/score'
+import { getCombos, Combo } from 'utils/score'
 
 const useStyles = makeStyles(() => createStyles({
   text: {
@@ -21,9 +20,9 @@ const useStyles = makeStyles(() => createStyles({
     border: 'solid 3px #00f',
     margin: -3,
   },
-  img: {
-    width: '100%',
-    height: 'auto',
+  media: {
+    height: 0,
+    paddingTop: '155%',
   },
   comboName: {
     cursor: 'pointer',
@@ -46,7 +45,7 @@ const useStyles = makeStyles(() => createStyles({
 }))
 
 const IndexPage = () => {
-  const [focusedMembers, setFocusedMembers] = React.useState<Member[]>([])
+  const [focusedCombo, setFocusedCombo] = React.useState<Combo | null>(null)
   const classes = useStyles()
   const router = useRouter()
   const members = router.query.member as Member[]
@@ -55,17 +54,14 @@ const IndexPage = () => {
   const combos = !!members ? getCombos(members) : []
   const score = !!members ? combos.reduce((acc, combo) => acc + combo.score, 0) : '???'
 
+  const onClickCombo = (combo: Combo) => !!focusedCombo && focusedCombo.name === combo.name ? setFocusedCombo(null) : setFocusedCombo(combo)
+
   const tweet = () => {
     const text = `さくら学院ポーカーで ${score}点 を取りました！\n#さくら学院 #さくら学院ポーカー\n\nhttps://sakura-poker.ryochansq.vercel.app/result`
     const url = members.reduce((acc, member, index) => acc + `${index === 0 ? '?' : '&'}member=${encodeURIComponent(member)}`, '')
     const encodedText = encodeURIComponent(text + url)
     const intent = `https://twitter.com/intent/tweet?text=${encodedText}`
     window.open(intent)
-  }
-
-  const onTipOpen = (comboMembersInfo: MemberInfo[]) => {
-    const comboMembers = comboMembersInfo.map(memberInfo => memberInfo.name)
-    setFocusedMembers(comboMembers)
   }
 
   return (
@@ -76,8 +72,8 @@ const IndexPage = () => {
       <Grid item container justify='center' spacing={1} className={classes.field}>
         {!!members && members.map(member =>
           <Grid key={member} item xs={2}>
-            <Card className={focusedMembers.some(focused => focused === member) ? classes.focused : ''}>
-              <img src={`members/${member}.jpg`} className={classes.img} />
+            <Card className={!!focusedCombo && focusedCombo.members.some(focused => focused.name === member) ? classes.focused : ''}>
+              <CardMedia className={classes.media} image={`members/${member}.jpg`} title={member} />
             </Card>
           </Grid>
         )}
@@ -91,13 +87,14 @@ const IndexPage = () => {
           <Grid key={combo.name} item container justify='center'>
             <Tooltip
               arrow
-              onOpen={() => onTipOpen(combo.members)}
-              onClose={() => setFocusedMembers([])}
+              open={!!focusedCombo && focusedCombo.name === combo.name}
+              onOpen={() => setFocusedCombo(combo)}
+              onClose={() => setFocusedCombo(null)}
               placement='top-start'
               title={combo.description}
               TransitionComponent={Zoom}
             >
-              <Grid item xs={8} sm={4} className={classes.comboName}>{combo.name}</Grid>
+              <Grid onClick={() => onClickCombo(combo)} item xs={8} sm={4} className={classes.comboName}>{combo.name}</Grid>
             </Tooltip>
             <Grid item container xs={2} sm={1} justify='flex-end'>{combo.score}</Grid>
           </Grid>
