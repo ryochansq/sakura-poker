@@ -87,6 +87,7 @@ const IndexPage = () => {
           <Grid key={combo.name} item container justify='center'>
             <Tooltip
               arrow
+              disableHoverListener
               disableTouchListener
               open={!!focusedCombo && focusedCombo.name === combo.name}
               onOpen={() => setFocusedCombo(combo)}
