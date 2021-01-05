@@ -3,6 +3,7 @@ import Head from 'next/head'
 import { AppBar, Grid, Link, Paper, Toolbar, Typography } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles'
 
+import { members } from 'interfaces/index'
 import HowToPlayDialog from 'components/HowToPlayDialog'
 
 const useStyles = makeStyles({
@@ -27,6 +28,7 @@ const Layout: React.FC<Props> = ({ children, isDialogOpen = false }) => {
         <title>さくら学院ポーカー</title>
         <meta charSet="utf-8" />
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+        {members.map(member => <link rel="preload" href={`members/${member}.jpg`} as="image" key={member} />)}
       </Head>
       <style jsx global>{`
       body {

@@ -54,6 +54,7 @@ const IndexPage = () => {
     setHand(newHand)
   }
   const select = (member: Member) => {
+    if (numOfExchange === 0) return
     const newHand = hand.map((card) => {
       const isSelected = card.member === member ? !card.isSelected : card.isSelected
       return { member: card.member, isSelected }
