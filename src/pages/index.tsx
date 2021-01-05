@@ -2,6 +2,7 @@ import React from 'react'
 import { Button, Card, CardMedia, Grid, Typography } from '@material-ui/core'
 import { makeStyles, createStyles } from '@material-ui/core/styles'
 import { useRouter } from 'next/router'
+import { TransitionGroup, CSSTransition } from 'react-transition-group'
 
 import Layout from 'components/Layout'
 import { MemberCard, members, Member } from 'interfaces/index'
@@ -14,6 +15,17 @@ const useStyles = makeStyles(() => createStyles({
   field: {
     backgroundColor: '#ffe5ff',
     padding: 0,
+  },
+  hand: {
+    padding: 4,
+  },
+  trGroup: {
+    width: '100%',
+    display: 'flex',
+  },
+  cssTr: {
+    width: '20%',
+    padding: 4,
   },
   selected: {
     border: 'solid 3px red',
@@ -37,9 +49,13 @@ const IndexPage = () => {
   const [deck, setDeck] = React.useState<Member[]>(defaultDeck)
   const [hand, setHand] = React.useState<MemberCard[]>([])
   const [numOfExchange, setNumOfExchange] = React.useState(3)
+  const [isDisabled, setIsDisabled] = React.useState(false)
 
   const selectedCount = hand.reduce((acc, card) => card.isSelected ? acc + 1 : acc, 0)
-  const buttonText = selectedCount > 0 ? `${selectedCount}枚 手放す` : '誰も手放さない'
+  const buttonText = (() => {
+    if (numOfExchange === 0) return 'スコア計算中'
+    return selectedCount > 0 ? `${selectedCount}枚 手放す` : '誰も手放さない'
+  })()
 
   const classes = useStyles()
 
@@ -61,15 +77,18 @@ const IndexPage = () => {
     })
     setHand(newHand)
   }
-  const discard = () => {
+  const discard = async () => {
+    setIsDisabled(true)
     if (selectedCount === 0) {
       setNumOfExchange(0)
       return
     }
     const newHand = hand.filter((card) => !card.isSelected)
     setHand(newHand)
+    await new Promise(res => setTimeout(() => res(''), 300))
     draw(newHand, 5 - newHand.length)
     setNumOfExchange(numOfExchange - 1)
+    setIsDisabled(false)
   }
 
   const router = useRouter()
@@ -86,18 +105,24 @@ const IndexPage = () => {
       <Grid item xs={12}>
         <Typography variant='subtitle1' className={classes.text}>手放すカードを選んで下さい　　あと {numOfExchange} 回</Typography>
       </Grid>
-      <Grid item container spacing={1} className={classes.field}>
-        <Grid item container xs={1} alignItems='center'>手札</Grid>
-        {hand.map(card =>
-          <Grid key={card.member} item xs={2}>
-            <Card onClick={() => select(card.member)} className={card.isSelected ? classes.selected : ''}>
-              <CardMedia className={classes.media} image={`members/${card.member}.jpg`} title={card.member} />
-            </Card>
-          </Grid>
-        )}
+      <Grid item container className={classes.field}>
+        <Grid item container xs={1} alignItems='center' className={classes.hand}>手札</Grid>
+        <Grid item xs={10}>
+          <TransitionGroup className={classes.trGroup}>
+            {hand.map(card =>
+              <CSSTransition key={card.member} timeout={250} classNames='card' className={classes.cssTr}>
+                <div className={classes.trGroup}>
+                  <Card onClick={() => select(card.member)} className={card.isSelected ? classes.selected : ''}>
+                    <CardMedia className={classes.media} image={`members/${card.member}.jpg`} title={card.member} />
+                  </Card>
+                </div>
+              </CSSTransition>
+            )}
+          </TransitionGroup>
+        </Grid>
       </Grid>
       <Grid item container justify='center'>
-        <Button onClick={discard} variant='contained' color={selectedCount > 0 ? 'primary' : 'default'} disabled={!numOfExchange}>{buttonText}</Button>
+        <Button onClick={discard} variant='contained' color={selectedCount > 0 ? 'primary' : 'default'} disabled={!numOfExchange || isDisabled}>{buttonText}</Button>
       </Grid>
     </Layout >
   )

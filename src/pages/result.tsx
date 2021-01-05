@@ -16,6 +16,9 @@ const useStyles = makeStyles(() => createStyles({
   field: {
     backgroundColor: '#ffe5ff',
   },
+  card: {
+    padding: 4,
+  },
   focused: {
     border: 'solid 3px #00f',
     margin: -3,
@@ -69,9 +72,9 @@ const IndexPage = () => {
       <Grid item xs={12}>
         <Typography variant='subtitle1' className={classes.text}>結果</Typography>
       </Grid>
-      <Grid item container justify='center' spacing={1} className={classes.field}>
+      <Grid item container justify='center' className={classes.field}>
         {!!members && members.map(member =>
-          <Grid key={member} item xs={2}>
+          <Grid key={member} item xs={2} className={classes.card}>
             <Card className={!!focusedCombo && focusedCombo.members.some(focused => focused.name === member) ? classes.focused : ''}>
               <CardMedia className={classes.media} image={`members/${member}.jpg`} title={member} />
             </Card>

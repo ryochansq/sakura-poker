@@ -1,0 +1,21 @@
+.card-enter {
+  opacity: 0;
+  transform: translateX(100%);
+
+  &-active {
+    transition: all .25s ease-out;
+    opacity: 1;
+    transform: translate(0);
+  }
+}
+.card-exit {
+  opacity: 1;
+  transform: translate(0);
+
+  &-active {
+    transition: all .25s ease-in-out;
+    opacity: 0;
+    transform: translateY(-50%);
+    width: 0px !important;
+  }
+}

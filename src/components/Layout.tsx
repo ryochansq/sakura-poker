@@ -1,14 +1,12 @@
 import React from 'react'
-import Head from 'next/head'
 import { AppBar, Grid, Link, Paper, Toolbar, Typography } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles'
 
-import { members } from 'interfaces/index'
 import HowToPlayDialog from 'components/HowToPlayDialog'
 
 const useStyles = makeStyles({
   paper: {
-    padding: 16,
+    padding: '16px 8px',
   },
   footer: {
     marginTop: 16,
@@ -24,17 +22,6 @@ const Layout: React.FC<Props> = ({ children, isDialogOpen = false }) => {
 
   return (
     <div>
-      <Head>
-        <title>さくら学院ポーカー</title>
-        <meta charSet="utf-8" />
-        <meta name="viewport" content="initial-scale=1.0, width=device-width" />
-        {members.map(member => <link rel="preload" href={`members/${member}.jpg`} as="image" key={member} />)}
-      </Head>
-      <style jsx global>{`
-      body {
-        margin: 0px;
-      }
-    `}</style>
       <AppBar position='static'>
         <Toolbar variant="dense">
           <Typography variant='h6' style={{ flexGrow: 1 }}>さくら学院ポーカー</Typography>
@@ -44,7 +31,7 @@ const Layout: React.FC<Props> = ({ children, isDialogOpen = false }) => {
       <Grid container justify='center'>
         <Grid item xs={12} md={8} lg={6}>
           <Paper className={classes.paper}>
-            <Grid container spacing={3}>
+            <Grid container spacing={2}>
               {children}
             </Grid>
             <Grid container spacing={1} className={classes.footer}>
