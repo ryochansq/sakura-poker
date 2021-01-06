@@ -163,10 +163,10 @@ const comboPositions = (members: MemberInfo[]): Combo[] => {
 }
 const comboClubs = (members: MemberInfo[]): Combo[] => {
   const keyword = 'clubs'
-  if (members.every(member => member[keyword].some(club => club === 'Twinklestars（1期）')))
+  if (members.every(member => member[keyword].some(club => club === 'Twinklestars (1期)')))
     return [{
-      name: 'Twinklestars（1期） ﾌﾗｯｼｭ',
-      description: 'Twinklestars（1期）を5人そろえる',
+      name: 'Twinklestars (1期) ﾌﾗｯｼｭ',
+      description: 'Twinklestars (1期)を5人そろえる',
       members,
       score: 50,
     }]

@@ -71,7 +71,7 @@ const IndexPage = () => {
   }
 
   return (
-    <Layout isDialogOpen={false}>
+    <Layout>
       <Grid item xs={12}>
         <Typography variant='subtitle1' className={classes.text}>結果</Typography>
       </Grid>

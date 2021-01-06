@@ -3,6 +3,7 @@ import { AppBar, Grid, Link, Paper, Toolbar, Typography } from '@material-ui/cor
 import { makeStyles } from '@material-ui/core/styles'
 
 import HowToPlayDialog from 'components/HowToPlayDialog'
+import MemberInfoDialog from 'components/MemberInfoDialog'
 
 const useStyles = makeStyles({
   paper: {
@@ -13,11 +14,9 @@ const useStyles = makeStyles({
   }
 })
 
-type Props = {
-  isDialogOpen?: boolean
-}
+type Props = {}
 
-const Layout: React.FC<Props> = ({ children, isDialogOpen = false }) => {
+const Layout: React.FC<Props> = ({ children }) => {
   const classes = useStyles()
 
   return (
@@ -25,7 +24,8 @@ const Layout: React.FC<Props> = ({ children, isDialogOpen = false }) => {
       <AppBar position='static'>
         <Toolbar variant="dense">
           <Typography variant='h6' style={{ flexGrow: 1 }}>さくら学院ポーカー</Typography>
-          <HowToPlayDialog defaultState={isDialogOpen} />
+          <MemberInfoDialog />
+          <HowToPlayDialog />
         </Toolbar>
       </AppBar>
       <Grid container justify='center'>

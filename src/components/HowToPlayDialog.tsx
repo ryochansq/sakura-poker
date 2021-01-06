@@ -1,23 +1,17 @@
 import React from 'react'
 import { Button, Dialog, DialogTitle, DialogContent, DialogActions } from '@material-ui/core'
-// import { makeStyles } from '@material-ui/core/styles'
+import { useRouter } from 'next/router'
 
-// const useStyles = makeStyles({
-//   paper: {
-//     padding: '16px 8px'
-//   },
-//   footer: {
-//     marginTop: 16,
-//   }
-// })
+type Props = {}
 
-type Props = {
-  defaultState?: boolean
-}
+const HowToPlayDialog: React.FC<Props> = () => {
+  const [isOpen, setIsOpen] = React.useState(false)
+  const router = useRouter()
+  const isFirst = router.query.first === '1'
 
-const HowToPlayDialog: React.FC<Props> = ({ defaultState = false }) => {
-  // const classes = useStyles()
-  const [isOpen, setIsOpen] = React.useState(defaultState)
+  React.useEffect(() => {
+    if (isFirst) setIsOpen(true)
+  }, [isFirst])
 
   const handleClose = () => setIsOpen(false)
   return (

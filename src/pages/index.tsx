@@ -85,7 +85,7 @@ const IndexPage = () => {
     }
     const newHand = hand.filter((card) => !card.isSelected)
     setHand(newHand)
-    await new Promise(res => setTimeout(() => res(''), 300))
+    await new Promise<void>(res => setTimeout(() => res(), 350))
     draw(newHand, 5 - newHand.length)
     setNumOfExchange(numOfExchange - 1)
     setIsDisabled(false)
@@ -98,17 +98,15 @@ const IndexPage = () => {
     query: { member: hand.map((card) => card.member), result: '1' },
   }), 500)
 
-  const isFirst = router.query.first === '1'
-
   return (
-    <Layout isDialogOpen={isFirst}>
+    <Layout>
       <Grid item xs={12}>
         <Typography variant='subtitle1' className={classes.text}>手放すカードを選んで下さい　　あと {numOfExchange} 回</Typography>
       </Grid>
       <Grid item xs={12} className={classes.field}>
         <TransitionGroup className={classes.trGroup}>
           {hand.map(card =>
-            <CSSTransition key={card.member} timeout={250} classNames='card' className={classes.cssTr}>
+            <CSSTransition key={card.member} timeout={300} classNames='card' className={classes.cssTr}>
               <div className={classes.trGroup}>
                 <Card onClick={() => select(card.member)} className={card.isSelected ? classes.selected : ''}>
                   <CardMedia className={classes.media} image={`members/${card.member}.jpg`} title={card.member} />
