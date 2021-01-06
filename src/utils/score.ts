@@ -235,7 +235,7 @@ const comboUniform = (members: MemberInfo[]): Combo[] => {
         name: `${key} ﾌﾗｯｼｭ`,
         description: `${key}を5人そろえる`,
         members,
-        score: 50
+        score: 45
       })
   }
   return combos

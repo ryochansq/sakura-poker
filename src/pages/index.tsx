@@ -14,7 +14,7 @@ const useStyles = makeStyles(() => createStyles({
   },
   field: {
     backgroundColor: '#ffe5ff',
-    padding: 0,
+    justifyContent: 'center',
   },
   hand: {
     padding: 4,
@@ -105,21 +105,18 @@ const IndexPage = () => {
       <Grid item xs={12}>
         <Typography variant='subtitle1' className={classes.text}>手放すカードを選んで下さい　　あと {numOfExchange} 回</Typography>
       </Grid>
-      <Grid item container className={classes.field}>
-        <Grid item container xs={1} alignItems='center' className={classes.hand}>手札</Grid>
-        <Grid item xs={10}>
-          <TransitionGroup className={classes.trGroup}>
-            {hand.map(card =>
-              <CSSTransition key={card.member} timeout={250} classNames='card' className={classes.cssTr}>
-                <div className={classes.trGroup}>
-                  <Card onClick={() => select(card.member)} className={card.isSelected ? classes.selected : ''}>
-                    <CardMedia className={classes.media} image={`members/${card.member}.jpg`} title={card.member} />
-                  </Card>
-                </div>
-              </CSSTransition>
-            )}
-          </TransitionGroup>
-        </Grid>
+      <Grid item xs={12} className={classes.field}>
+        <TransitionGroup className={classes.trGroup}>
+          {hand.map(card =>
+            <CSSTransition key={card.member} timeout={250} classNames='card' className={classes.cssTr}>
+              <div className={classes.trGroup}>
+                <Card onClick={() => select(card.member)} className={card.isSelected ? classes.selected : ''}>
+                  <CardMedia className={classes.media} image={`members/${card.member}.jpg`} title={card.member} />
+                </Card>
+              </div>
+            </CSSTransition>
+          )}
+        </TransitionGroup>
       </Grid>
       <Grid item container justify='center'>
         <Button onClick={discard} variant='contained' color={selectedCount > 0 ? 'primary' : 'default'} disabled={!numOfExchange || isDisabled}>{buttonText}</Button>

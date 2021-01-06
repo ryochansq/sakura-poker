@@ -15,8 +15,11 @@ const useStyles = makeStyles(() => createStyles({
   },
   field: {
     backgroundColor: '#ffe5ff',
+    justifyContent: 'center',
+    display: 'flex',
   },
   card: {
+    width: '20%',
     padding: 4,
   },
   focused: {
@@ -72,13 +75,13 @@ const IndexPage = () => {
       <Grid item xs={12}>
         <Typography variant='subtitle1' className={classes.text}>結果</Typography>
       </Grid>
-      <Grid item container justify='center' className={classes.field}>
+      <Grid item xs={12} className={classes.field}>
         {!!members && members.map(member =>
-          <Grid key={member} item xs={2} className={classes.card}>
+          <div key={member} className={classes.card}>
             <Card className={!!focusedCombo && focusedCombo.members.some(focused => focused.name === member) ? classes.focused : ''}>
               <CardMedia className={classes.media} image={`members/${member}.jpg`} title={member} />
             </Card>
-          </Grid>
+          </div>
         )}
       </Grid>
       <Grid item container>
