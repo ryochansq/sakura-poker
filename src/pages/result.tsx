@@ -3,6 +3,7 @@ import { Button, Card, CardMedia, Grid, Tooltip, Typography, Zoom } from '@mater
 import { Twitter } from '@material-ui/icons'
 import { makeStyles, createStyles } from '@material-ui/core/styles'
 import { useRouter } from 'next/router'
+import * as Sentry from '@sentry/react'
 
 import Layout from 'components/Layout'
 import { Member } from 'interfaces/index'
@@ -61,6 +62,14 @@ const IndexPage = () => {
   const score = !!members ? combos.reduce((acc, combo) => acc + combo.score, 0) : '???'
 
   const onClickCombo = (combo: Combo) => !!focusedCombo && focusedCombo.name === combo.name ? setFocusedCombo(null) : setFocusedCombo(combo)
+
+  React.useEffect(() => {
+    setTimeout(() => {
+      if (!isResult) return
+      const message = `${score},${members.join(',')}`
+      Sentry.captureMessage(message)
+    }, 2000)
+  }, [])
 
   const tweet = () => {
     const text = `さくら学院ポーカーで ${score}点 を取りました！\n#さくら学院 #さくら学院ポーカー\n\nhttps://sakura-poker.ryochansq.vercel.app/result`

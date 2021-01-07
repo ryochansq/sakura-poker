@@ -10,6 +10,8 @@
   "dependencies": {
     "@material-ui/core": "^4.11.2",
     "@material-ui/icons": "^4.11.2",
+    "@sentry/react": "^5.29.2",
+    "@sentry/tracing": "^5.29.2",
     "next": "latest",
     "node-sass": "^5.0.0",
     "react": "^16.12.0",

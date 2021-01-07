@@ -15,10 +15,6 @@ const useStyles = makeStyles({
     paddingTop: '126.8%',
     backgroundPosition: '0 0',
   },
-  name: {
-    // fontWeight: 600,
-    // lineHeight: 1,
-  },
   kana: {
     lineHeight: 1,
     transform: 'translateY(-20px) !important',
@@ -51,7 +47,7 @@ const MemberInfoDialog: React.FC<Props> = ({ defaultState = false }) => {
                         <Card><CardMedia className={classes.media} image={`members/${student.name}.jpg`} title={student.name} /></Card>
                       </Grid>
                       <Grid item xs={9}>
-                        <Typography variant="body1" className={classes.name}><b>{student.name}</b></Typography>
+                        <Typography variant="body1">{student.name}</Typography>
                         <Typography variant="caption" className={classes.kana}>{student.kana}</Typography>
                         <Typography variant="body2">生年月日：{student.birthDay}</Typography>
                         <Typography variant="body2">在籍年度：{student.transfer === '初期メンバー' ? 2010 : student.transfer}~{student.graduate > 2020 ? 2020 : student.graduate}</Typography>

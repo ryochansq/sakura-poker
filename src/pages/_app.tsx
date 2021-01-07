@@ -3,6 +3,7 @@ import Head from 'next/head'
 import { AppProps } from 'next/app'
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles'
 import CssBaseline from '@material-ui/core/CssBaseline'
+import * as Sentry from '@sentry/react'
 
 import { members } from 'interfaces/index'
 import 'styles/index.scss'
@@ -17,6 +18,8 @@ export default function MyApp(props: AppProps) {
       jssStyles.parentElement!.removeChild(jssStyles)
     }
   }, [])
+
+  Sentry.init({ dsn: "https://cc4b41c56c834e65b3cf10b7572c2fef@o501344.ingest.sentry.io/5582368" })
 
   return (
     <React.Fragment>
