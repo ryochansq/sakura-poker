@@ -65,16 +65,17 @@ const IndexPage = () => {
 
   React.useEffect(() => {
     setTimeout(() => {
+      if (window.location.host === 'localhost:3000') return
       if (!isResult) return
       const message = `${score},${members.join(',')}`
       Sentry.captureMessage(message)
-    }, 2000)
+    }, 3000)
   }, [])
 
   const tweet = () => {
-    const text = `さくら学院ポーカーで ${score}点 を取りました！\n#さくら学院 #さくら学院ポーカー\n\nhttps://sakura-poker.ryochansq.vercel.app/result`
-    const url = members.reduce((acc, member, index) => acc + `${index === 0 ? '?' : '&'}member=${encodeURIComponent(member)}`, '')
-    const encodedText = encodeURIComponent(text + url)
+    const url = members.reduce((acc, member, index) => acc + `${index === 0 ? '?' : '&'}member=${encodeURIComponent(member)}`, 'https://sakura-poker.ryochansq.vercel.app/result')
+    const text = `さくら学院ポーカーで ${score}点 を取りました！\n\n▼さくら学院ポーカー\n${url}\n\n#さくら学院 #さくら学院ポーカー\n#さくら学院父兄パソコン部`
+    const encodedText = encodeURIComponent(text)
     const intent = `https://twitter.com/intent/tweet?text=${encodedText}`
     window.open(intent)
   }
@@ -128,7 +129,7 @@ const IndexPage = () => {
           <Button onClick={() => router.push(`/${isResult ? '' : '?first=1'}`)} variant='contained' color='primary' className={classes.button}>{isResult ? 'もういちど遊ぶ' : '自分も遊んでみる！'}</Button>
         </Grid>
         <Grid item>
-          {isResult && <Button onClick={tweet} variant='contained' color='primary' className={classes.tweet} startIcon={<Twitter />} disabled>結果をTweet</Button>}
+          {isResult && <Button onClick={tweet} variant='contained' color='primary' className={classes.tweet} startIcon={<Twitter />}>結果をTweet</Button>}
         </Grid>
       </Grid>
     </Layout>
