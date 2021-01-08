@@ -163,16 +163,16 @@ const comboPositions = (members: MemberInfo[]): Combo[] => {
 }
 const comboClubs = (members: MemberInfo[]): Combo[] => {
   const keyword = 'clubs'
+  const allMap = getMap(memberInfo, keyword)
+  const map = getMap(members, keyword)
+  const combos: Combo[] = []
   if (members.every(member => member[keyword].some(club => club === 'Twinklestars (1期)')))
-    return [{
+    combos.push({
       name: 'Twinklestars (1期) ﾌﾗｯｼｭ',
       description: 'Twinklestars (1期)を5人そろえる',
       members,
       score: 50,
-    }]
-  const allMap = getMap(memberInfo, keyword)
-  const map = getMap(members, keyword)
-  const combos: Combo[] = []
+    })
   for (const key of map.keys()) {
     if (map.get(key) === allMap.get(key))
       combos.push({
