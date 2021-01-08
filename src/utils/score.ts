@@ -245,6 +245,13 @@ const comboOthers = (members: MemberInfo[]): Combo[] => {
   const allMap = getMap(memberInfo, keyword)
   const map = getMap(members, keyword)
   const combos: Combo[] = []
+  if (members.every(member => member.others.some(other => other === '愛')))
+    combos.push({
+      name: `名前に「愛」ﾌﾗｯｼｭ`,
+      description: `名前に「愛」を含む生徒を5人そろえる`,
+      members,
+      score: 50
+    })
   for (const key of map.keys()) {
     if (map.get(key) === allMap.get(key)) {
       if (key === '森ハヤシ')

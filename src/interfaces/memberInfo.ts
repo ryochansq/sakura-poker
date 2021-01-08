@@ -39,7 +39,7 @@ export const memberInfo: MemberInfo[] = [
     birthDay: '1996年12月26日',
     home: '福島県',
     uniform: 'ネイビーの制服2010',
-    others: []
+    others: ['愛']
   },
   {
     name: '三吉 彩花',
@@ -78,7 +78,7 @@ export const memberInfo: MemberInfo[] = [
     birthDay: '2000年8月4日',
     home: '広島県',
     uniform: 'ネイビーの制服2010',
-    others: []
+    others: ['愛']
   },
   {
     name: '堀内 まり菜',
@@ -143,7 +143,7 @@ export const memberInfo: MemberInfo[] = [
     birthDay: '1999年7月4日',
     home: '愛知県',
     uniform: 'ベージュの制服',
-    others: []
+    others: ['愛']
   },
   {
     name: '水野 由結',
@@ -260,7 +260,7 @@ export const memberInfo: MemberInfo[] = [
     birthDay: '2002年12月1日',
     home: '鹿児島県',
     uniform: 'グレーの制服',
-    others: ['2016年度生徒会', '2017年度生徒会']
+    others: ['2016年度生徒会', '2017年度生徒会', '愛']
   },
   {
     name: '岡田 愛',
@@ -273,7 +273,7 @@ export const memberInfo: MemberInfo[] = [
     birthDay: '2002年4月4日',
     home: '愛知県',
     uniform: 'グレーの制服',
-    others: ['2017年度生徒会']
+    others: ['2017年度生徒会', '愛']
   },
   {
     name: '岡崎 百々子',
@@ -442,7 +442,7 @@ export const memberInfo: MemberInfo[] = [
     birthDay: '2006年12月1日',
     home: '佐賀県',
     uniform: 'ネイビーの制服2019',
-    others: ['佐藤']
+    others: ['佐藤', '愛']
   },
   {
     name: '戸高 美湖',
@@ -468,7 +468,7 @@ export const memberInfo: MemberInfo[] = [
     birthDay: '2007年11月15日',
     home: '愛知県',
     uniform: 'ネイビーの制服2019',
-    others: []
+    others: ['愛']
   },
   {
     name: '木村 咲愛',
@@ -481,7 +481,7 @@ export const memberInfo: MemberInfo[] = [
     birthDay: '2009年2月20日',
     home: '東京都',
     uniform: 'ネイビーの制服2019',
-    others: []
+    others: ['愛']
   },
   {
     name: '森 ハヤシ',
