@@ -1,5 +1,5 @@
-import { Member } from 'interfaces/index'
-import { memberInfo, MemberInfo } from 'interfaces/memberInfo'
+import { Member } from '@App/interfaces/index'
+import { memberInfo, MemberInfo } from '@App/interfaces/memberInfo'
 
 export type Combo = {
   name: string,
