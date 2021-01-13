@@ -36,7 +36,7 @@ const useStyles = makeStyles(() => createStyles({
     textTransform: 'none',
   },
   score: {
-    fontSize: 22,
+    fontSize: 20,
     fontWeight: 600,
   },
 }))
