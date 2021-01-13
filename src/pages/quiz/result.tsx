@@ -3,7 +3,6 @@ import { Button, Card, CardMedia, Grid, Tooltip, Typography, Zoom } from '@mater
 import { Twitter } from '@material-ui/icons'
 import { makeStyles, createStyles } from '@material-ui/core/styles'
 import { useRouter } from 'next/router'
-import * as Sentry from '@sentry/react'
 
 import Layout from 'components/Layout'
 import { Member } from 'interfaces/index'
@@ -56,6 +55,8 @@ const IndexPage = () => {
   const classes = useStyles()
   const router = useRouter()
   const members = router.query.member as Member[]
+  const answers = router.query.answer as Member[]
+  console.info(answers)
   const isResult = router.query.result === '1'
 
   const combos = !!members ? getCombos(members) : []
@@ -64,14 +65,16 @@ const IndexPage = () => {
   const onClickCombo = (combo: Combo) => !!focusedCombo && focusedCombo.name === combo.name ? setFocusedCombo(null) : setFocusedCombo(combo)
 
   React.useEffect(() => {
+    // TODO: Sentryに代わるロギングサービスにログ送信する
     setTimeout(() => {
       if (window.location.host === 'localhost:3000') return
       if (!isResult) return
-      const message = `${score},${members.join(',')}`
-      Sentry.captureMessage(message)
+      // const message = `${score},${members.join(',')}`
+      // Sentry.captureMessage(message)
     }, 3000)
   }, [])
 
+  // TODO: tweet内容を変える
   const tweet = () => {
     const url = members.reduce((acc, member, index) => acc + `${index === 0 ? '?' : '&'}member=${encodeURIComponent(member)}`, 'https://sakura-poker.ryochansq.vercel.app/result')
     const text = `さくら学院ポーカーで ${score}点 を取りました！\n\n▼結果詳細\n${url}\n\n#さくら学院 #さくら学院ポーカー\n#さくら学院父兄パソコン部`
@@ -86,8 +89,8 @@ const IndexPage = () => {
         <Typography variant='subtitle1' className={classes.text}>結果</Typography>
       </Grid>
       <Grid item xs={12} className={classes.field}>
-        {!!members && members.map(member =>
-          <div key={member} className={classes.card}>
+        {!!members && members.map((member, index) =>
+          <div key={index} className={classes.card}>
             <Card className={!!focusedCombo && focusedCombo.members.some(focused => focused.name === member) ? classes.focused : ''}>
               <CardMedia className={classes.media} image={`/members/${member}.jpg`} title={member} />
             </Card>

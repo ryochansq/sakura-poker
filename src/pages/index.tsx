@@ -109,7 +109,7 @@ const IndexPage = () => {
             <CSSTransition key={card.member} timeout={300} classNames='card' className={classes.cssTr}>
               <div className={classes.trGroup}>
                 <Card onClick={() => select(card.member)} className={card.isSelected ? classes.selected : ''}>
-                  <CardMedia className={classes.media} image={`members/${card.member}.jpg`} title={card.member} />
+                  <CardMedia className={classes.media} image={`/members/${card.member}.jpg`} title={card.member} />
                 </Card>
               </div>
             </CSSTransition>
