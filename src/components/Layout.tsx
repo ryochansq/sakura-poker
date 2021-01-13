@@ -46,7 +46,7 @@ const Layout: React.FC<Props> = ({ children }) => {
         <Grid item xs={12} md={8} lg={6}>
           <Paper className={classes.paper}>
             <Grid container spacing={2}>
-              <Grid item xs={12} >
+              {/* <Grid item xs={12} >
                 <Typography className={classes.text}>
                   {
                     isQuiz ?
@@ -58,7 +58,7 @@ const Layout: React.FC<Props> = ({ children }) => {
                       </span>
                   }
                 </Typography>
-              </Grid>
+              </Grid> */}
               {children}
             </Grid>
             <Grid container spacing={1} className={classes.footer}>
