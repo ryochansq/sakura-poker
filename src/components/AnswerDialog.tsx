@@ -1,5 +1,5 @@
 import React from 'react'
-import { Button, Card, CardMedia, Dialog, DialogTitle, DialogContent, DialogActions, Grid, IconButton, Paper, Slide, Tooltip, Typography, Zoom } from '@material-ui/core'
+import { Button, Card, CardMedia, Dialog, DialogTitle, DialogActions, Grid, IconButton, Paper, Slide, Tooltip, Typography, Zoom } from '@material-ui/core'
 import { makeStyles, createStyles } from '@material-ui/core/styles'
 import { TransitionProps } from '@material-ui/core/transitions'
 import { Close } from '@material-ui/icons'
