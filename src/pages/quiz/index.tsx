@@ -1,5 +1,5 @@
 import React from 'react'
-import { Button, Card, CardMedia, Grid, Select, Typography } from '@material-ui/core'
+import { Button, Card, CardMedia, Checkbox, Grid, Select, Typography } from '@material-ui/core'
 import { makeStyles, createStyles } from '@material-ui/core/styles'
 import { useRouter } from 'next/router'
 
@@ -28,6 +28,9 @@ const useStyles = makeStyles(() => createStyles({
   select: {
     fontSize: 12,
     margin: '4px 0',
+  },
+  checkbox: {
+    padding: 0,
   },
   comboName: {
     color: '#00d',
@@ -106,11 +109,13 @@ const IndexPage = () => {
       </Grid>
       <Grid item container>
         <Grid item container justify='center'>
+          <Grid item container xs={1} sm={1} justify='center'>ﾒﾓ</Grid>
           <Grid item xs={8} sm={4}>役</Grid>
           <Grid item container xs={2} sm={1} justify='flex-end'>点数</Grid>
         </Grid>
         {isComboVisible && combos.map(combo =>
-          <Grid key={combo.name} item container justify='center'>
+          <Grid key={combo.name} item container justify='center' alignItems='center'>
+            <Grid item container xs={1} sm={1} justify='center'><Checkbox size='small' className={classes.checkbox} /></Grid>
             <Grid item xs={8} sm={4} className={classes.comboName}>{combo.name}</Grid>
             <Grid item container xs={2} sm={1} justify='flex-end'>{combo.score}</Grid>
           </Grid>
