@@ -2,9 +2,9 @@ import React from 'react'
 import { AppBar, Grid, Paper, Toolbar, Typography } from '@material-ui/core'
 import MuLink from '@material-ui/core/Link'
 import { makeStyles } from '@material-ui/core/styles'
-import { FiberNew } from '@material-ui/icons'
-import Link from 'next/link'
-import { useRouter } from 'next/router'
+// import { FiberNew } from '@material-ui/icons'
+// import Link from 'next/link'
+// import { useRouter } from 'next/router'
 
 import HowToPlayDialog from 'components/HowToPlayDialog'
 import MemberInfoDialog from 'components/MemberInfoDialog'
@@ -30,8 +30,8 @@ type Props = {}
 
 const Layout: React.FC<Props> = ({ children }) => {
   const classes = useStyles()
-  const router = useRouter()
-  const isQuiz = !router.pathname.indexOf('/quiz')
+  // const router = useRouter()
+  // const isQuiz = !router.pathname.indexOf('/quiz')
 
   return (
     <div>
