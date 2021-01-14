@@ -3,6 +3,7 @@ import { Button, Card, CardMedia, Grid, Tooltip, Typography, Zoom } from '@mater
 import { Twitter } from '@material-ui/icons'
 import { makeStyles, createStyles } from '@material-ui/core/styles'
 import { useRouter } from 'next/router'
+import * as Sentry from '@sentry/react'
 
 import Layout from 'components/Layout'
 import { Member } from 'interfaces/index'
@@ -86,16 +87,14 @@ const IndexPage = () => {
   const onClickCombo = (combo: Combo) => !!focusedCombo && focusedCombo.name === combo.name ? setFocusedCombo(null) : setFocusedCombo(combo)
 
   React.useEffect(() => {
-    // TODO: Sentryに代わるロギングサービスにログ送信する
     setTimeout(() => {
       if (window.location.host === 'localhost:3000') return
       if (!isResult) return
-      // const message = `${score},${members.join(',')}`
-      // Sentry.captureMessage(message)
+      const message = `quiz:${isCorrect}`
+      Sentry.captureMessage(message)
     }, 3000)
   }, [])
 
-  // TODO: tweet内容を変える
   const tweet = () => {
     const url = members.reduce((acc, member, index) => acc + `${index === 0 ? '?' : '&'}member=${encodeURIComponent(member)}`, 'https://sakura-poker.ryochansq.vercel.app/quiz/result')
     const query = '&answer=' + answers.map(answer => encodeURIComponent(answer)).join('&answer=')
