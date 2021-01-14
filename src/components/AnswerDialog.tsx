@@ -70,7 +70,7 @@ const AnswerDialog: React.FC<Props> = ({ members, combos }) => {
       <Button onClick={() => setIsOpen(true)} variant='contained' color='secondary' className={classes.button}>解答例</Button>
       <Dialog fullScreen open={isOpen} onClose={handleClose} TransitionComponent={Transition}>
         <DialogTitle>
-          <Grid container justify='center'>
+          <Grid container justify='center' style={{ marginTop: 32 }}>
             <Grid item container xs={12} md={8} lg={6} justify='space-between' alignItems='center'>
               <Grid>
                 <Typography variant="h6">解答例</Typography>

@@ -44,7 +44,7 @@ const MemberInfoDialog: React.FC<Props> = ({ defaultState = false }) => {
                   <Card className={classes.card}>
                     <Grid container direction='row' justify='center' spacing={1}>
                       <Grid item xs={3}>
-                        <Card><CardMedia className={classes.media} image={`members/${student.name}.jpg`} title={student.name} /></Card>
+                        <Card><CardMedia className={classes.media} image={`/members/${student.name}.jpg`} title={student.name} /></Card>
                       </Grid>
                       <Grid item xs={9}>
                         <Typography variant="body1">{student.name}</Typography>
