@@ -26,7 +26,7 @@ const useStyles = makeStyles(() => createStyles({
     paddingTop: '155%',
   },
   select: {
-    fontSize: 12,
+    fontSize: 16,
     margin: '4px 0',
   },
   checkbox: {
