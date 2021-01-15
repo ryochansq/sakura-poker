@@ -2,9 +2,9 @@ import React from 'react'
 import { AppBar, Grid, Paper, Toolbar, Typography } from '@material-ui/core'
 import MuLink from '@material-ui/core/Link'
 import { makeStyles } from '@material-ui/core/styles'
-// import { FiberNew } from '@material-ui/icons'
-// import Link from 'next/link'
-// import { useRouter } from 'next/router'
+import { FiberNew } from '@material-ui/icons'
+import Link from 'next/link'
+import { useRouter } from 'next/router'
 
 import HowToPlayDialog from 'components/HowToPlayDialog'
 import MemberInfoDialog from 'components/MemberInfoDialog'
@@ -30,8 +30,8 @@ type Props = {}
 
 const Layout: React.FC<Props> = ({ children }) => {
   const classes = useStyles()
-  // const router = useRouter()
-  // const isQuiz = !router.pathname.indexOf('/quiz')
+  const router = useRouter()
+  const isQuiz = !router.pathname.indexOf('/quiz')
 
   return (
     <div>
@@ -46,7 +46,7 @@ const Layout: React.FC<Props> = ({ children }) => {
         <Grid item xs={12} md={8} lg={6}>
           <Paper className={classes.paper}>
             <Grid container spacing={2}>
-              {/* <Grid item xs={12} >
+              <Grid item xs={12} >
                 <Typography className={classes.text}>
                   {
                     isQuiz ?
@@ -54,11 +54,11 @@ const Layout: React.FC<Props> = ({ children }) => {
                       :
                       <span>
                         <FiberNew color='secondary' className={classes.newIcon} />
-                        <Link href='/quiz'>クイズモードで遊んでみる！</Link>
+                        <Link href='/quiz'>パズルモードで遊んでみる！</Link>
                       </span>
                   }
                 </Typography>
-              </Grid> */}
+              </Grid>
               {children}
             </Grid>
             <Grid container spacing={1} className={classes.footer}>

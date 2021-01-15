@@ -98,7 +98,7 @@ const IndexPage = () => {
   const tweet = () => {
     const url = members.reduce((acc, member, index) => acc + `${index === 0 ? '?' : '&'}member=${encodeURIComponent(member)}`, 'https://sakura-poker.ryochansq.vercel.app/quiz/result')
     const query = '&answer=' + answers.map(answer => encodeURIComponent(answer)).join('&answer=')
-    const text = `さくら学院ポーカークイズで ${isCorrect ? '正解 しました！' : '不正解 でした...'}\n\n▼結果詳細\n${url + query}\n\n#さくら学院 #さくら学院ポーカー\n#さくら学院父兄パソコン部`
+    const text = `さくら学院ポーカーパズルで${isCorrect ? ' 正解 しました！' : '遊びました！'}\n\n▼結果詳細\n${url + query}\n\n#さくら学院 #さくら学院ポーカー\n#さくら学院父兄パソコン部`
     const encodedText = encodeURIComponent(text)
     const intent = `https://twitter.com/intent/tweet?text=${encodedText}`
     window.open(intent)
